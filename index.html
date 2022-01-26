@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Etch-A-Sketch</title>
+		<meta charset="UTF-8">
+        <link rel='stylesheet' href='style.css'>
+	</head>
+	<body>
+        <h1>Etch-A-Sketch</h1>
+        <div id='centerbox'>
+            <div id='optionsBox'>
+                <button id='btnOne'>RESET</button>
+                <button id='btnTwo'>COLORIZE</button>
+                <!--<button id='btnThree'>three</button> -->
+                <!--<button id='btnFour'>four</button> -->
+            </div>
+        <div id='gridBox'>
+
+        </div>
+        
+        </div>
+        
+        <script>
+            let gridDims = 16;
+            const box = document.getElementById('gridBox');
+            let colorized = false;
+            function drawGrid() {
+                
+                let i= 0;
+                let n= 0;
+                while(i < gridDims) {
+                    
+                    window['row'+i] = document.createElement('div');
+                    
+                    box.appendChild(window['row'+i]);
+                    
+                    while(n < gridDims) {
+                        
+                        
+                        
+                        window["box"+i+"sub"+n] = document.createElement('pixel');
+                        
+                        window["row"+i].appendChild(window["box"+i+"sub"+n]);            
+                        
+                        n++;
+                    }
+                    n=0;
+                    i++;
+                }
+                document.querySelectorAll('pixel').forEach(item => {
+                    item.addEventListener('mouseover', event => {
+                    item.style.background = 'black';
+                        })
+                    })
+            }
+            function removeGrid(){
+                let i= 0;
+                let n= 0;
+                while(i < gridDims) {
+                    window['row'+i].remove();
+                    while(n < gridDims) {
+                        window["box"+i+"sub"+n].remove();
+                        n++;
+                    }
+                    n=0;
+                    i++;
+                }
+            }
+            drawGrid();
+            
+                
+            
+            
+            document.getElementById('btnTwo').addEventListener('click', function(){
+                colorized = !colorized;
+                
+                if(colorized == false){
+                    document.querySelectorAll('pixel').forEach(item => {
+                    item.addEventListener('mouseover', event => {
+                    item.style.background = 'black';
+                        })
+                    })
+                }
+               else{
+                   document.querySelectorAll('pixel').forEach(item => {
+                     item.addEventListener('mouseover', event => {
+                    item.style.background = 'red';
+                        })
+                    })
+                }
+            })
+            document.getElementById('btnOne').addEventListener('click', function(){
+                
+                removeGrid();
+                gridDims = prompt("Enter new grid length");
+                while(gridDims> 100 || gridDims<0){
+                    gridDims = prompt('Please enter a positive number no greater than 100')
+                }
+                drawGrid()});
+            
+        </script>    
+	</body>
+</html>
