@@ -6,20 +6,21 @@
         <link rel='stylesheet' href='style.css'>
 	</head>
 	<body>
-        <h1>Etch-A-Sketch</h1>
-        <div id='centerbox'>
+        <header class="header">
+            <h1>Etch-A-Sketch</h1>
             <div id='optionsBox'>
                 <button id='btnOne'>RESET</button>
                 <button id='btnTwo'>COLORIZE</button>
                 <!--<button id='btnThree'>three</button> -->
                 <!--<button id='btnFour'>four</button> -->
             </div>
-        <div id='gridBox'>
-
+        </header>
+        <main>
+        <div id='centerBox'>
+            <div id='gridBox'>
+            </div>
+        </main>    
         </div>
-        
-        </div>
-        
         <script>
             let gridDims = 16;
             const box = document.getElementById('gridBox');
